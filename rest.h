@@ -186,6 +186,10 @@ _BME_POFTWBIT(Unlock)(
     #else
       #error ?
     #endif
+
+    #if BME_set_CountLockFail
+      _BME_GetType->LockFailCount = 0;
+    #endif
   }
 
   _BME_SOFTWBIT
@@ -223,6 +227,10 @@ _BME_POFTWBIT(Unlock)(
       _BME_GetType->value = 0;
     #else
       #error ?
+    #endif
+
+    #if BME_set_CountLockFail
+      _BME_GetType->LockFailCount = 0;
     #endif
   }
 #endif
