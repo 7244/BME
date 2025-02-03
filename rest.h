@@ -216,8 +216,6 @@ _BME_POFTWBIT(Unlock)(
       #error ?
     #endif
   }
-#else
-  #error ?
 #endif
 #if BME_set_Language != 0
   public:

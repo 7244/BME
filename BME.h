@@ -69,11 +69,11 @@
 #endif
 
 #if BME_set_Language == 0
-  #define _BME_POFTWBIT(p0) _P(p0)
+  #define _BME_POFTWBIT(p0) _BME_P(p0)
   #define _BME_SOFTWBIT static
   #define _BME_PTFF t
   #define _BME_PTFFC _BME_PTFF,
-  #define _BME_DTFF _P(t) *_BME_PTFF
+  #define _BME_DTFF _BME_P(t) *_BME_PTFF
   #define _BME_DTFFC _BME_DTFF,
   #define _BME_GetType _BME_PTFF
   #define _BME_OCITFFE ,
