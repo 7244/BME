@@ -23,6 +23,10 @@
   #define BME_set_Pad 0
 #endif
 
+#ifndef BME_set_CountLockFail
+  #define BME_set_CountLockFail 0
+#endif
+
 #ifndef BME_set_Language
   #if BME_set_AreWeInsideStruct
     #define BME_set_Language 1
@@ -116,6 +120,7 @@
 #undef BME_set_Sleep
 #undef BME_set_NoLibrary
 #undef BME_set_Language
+#undef BME_set_CountLockFail
 #undef BME_set_Pad
 #undef BME_set_AreWeInsideStruct
 #undef BME_set_Prefix

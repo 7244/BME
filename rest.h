@@ -17,6 +17,9 @@ BME_StructBegin(_BME_P(t))
       pthread_mutex_t mutex;
     #elif !BME_set_Sleep
       uint8_t value;
+      #if BME_set_CountLockFail
+        uint64_t LockFailCount;
+      #endif
     #else
       #error ?
     #endif
@@ -72,6 +75,9 @@ _BME_POFTWBIT(Lock)(
     #endif
   #elif !defined(BME_set_Conditional) && !BME_set_Sleep
     while(__atomic_exchange_n(&_BME_GetType->value, 1, __ATOMIC_SEQ_CST)){
+      #if BME_set_CountLockFail
+        __atomic_add_fetch(&_BME_GetType->LockFailCount, 1, __ATOMIC_SEQ_CST);
+      #endif
       #if BME_set_LockValue == 1
         return 1;
       #else
