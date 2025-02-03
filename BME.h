@@ -19,6 +19,10 @@
   #define BME_set_AreWeInsideStruct 0
 #endif
 
+#ifndef BME_set_Pad
+  #define BME_set_Pad 0
+#endif
+
 #ifndef BME_set_Language
   #if BME_set_AreWeInsideStruct
     #define BME_set_Language 1
@@ -70,7 +74,7 @@
 
 #if BME_set_Language == 0
   #define _BME_POFTWBIT(p0) _BME_P(p0)
-  #define _BME_SOFTWBIT static
+  #define _BME_SOFTWBIT static __forceinline
   #define _BME_PTFF t
   #define _BME_PTFFC _BME_PTFF,
   #define _BME_DTFF _BME_P(t) *_BME_PTFF
@@ -112,5 +116,6 @@
 #undef BME_set_Sleep
 #undef BME_set_NoLibrary
 #undef BME_set_Language
+#undef BME_set_Pad
 #undef BME_set_AreWeInsideStruct
 #undef BME_set_Prefix

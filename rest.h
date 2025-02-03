@@ -1,3 +1,6 @@
+#if !BME_set_Pad
+  #pragma pack(push, 1)
+#endif
 BME_StructBegin(_BME_P(t))
   #if defined(BME_set_Conditional)
     #if defined(__platform_unix) && defined(__platform_libc) && !BME_set_NoLibrary && BME_set_Sleep
@@ -223,4 +226,7 @@ _BME_POFTWBIT(Unlock)(
 
 #if BME_set_Language != 0
   BME_StructEnd(_BME_P(t))
+#endif
+#if !BME_set_Pad
+  #pragma pack(pop)
 #endif
