@@ -68,7 +68,7 @@ _BME_POFTWBIT(Lock)(
       return 0;
     #endif
   #elif !defined(BME_set_Conditional) && !BME_set_Sleep
-    while(__sync_lock_test_and_set(&_BME_GetType->value, 1)){
+    while(__atomic_exchange_n(&_BME_GetType->value, 1, __ATOMIC_SEQ_CST)){
       #if BME_set_LockValue == 1
         return 1;
       #else
@@ -103,7 +103,7 @@ _BME_POFTWBIT(Unlock)(
       __abort();
     }
   #elif !defined(BME_set_Conditional) && !BME_set_Sleep
-    __sync_lock_release(&_BME_GetType->value);
+    __atomic_exchange_n(&_BME_GetType->value, 0, __ATOMIC_SEQ_CST);
   #else
     #error ?
   #endif
