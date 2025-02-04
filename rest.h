@@ -44,6 +44,18 @@ BME_StructBegin(_BME_P(t))
 #endif
 
 _BME_SOFTWBIT
+bool
+_BME_POFTWBIT(Peek)(
+  _BME_DTFF
+){
+  #if !defined(BME_set_Conditional) && !BME_set_Sleep
+    return __atomic_load_n(&_BME_GetType->value, __ATOMIC_SEQ_CST);
+  #else
+    #error ?
+  #endif
+}
+
+_BME_SOFTWBIT
 #if BME_set_LockValue == 0
   void
 #else
