@@ -87,6 +87,9 @@ _BME_POFTWBIT(Lock)(
     #endif
   #elif !defined(BME_set_Conditional) && !BME_set_Sleep
     while(__atomic_exchange_n(&_BME_GetType->value, 1, __ATOMIC_SEQ_CST)){
+      #if defined(BME_set_CountLockFailGlobal)
+        __atomic_add_fetch(BME_set_CountLockFailGlobal, 1, __ATOMIC_SEQ_CST);
+      #endif
       #if BME_set_CountLockFail
         __atomic_add_fetch(&_BME_GetType->LockFailCount, 1, __ATOMIC_SEQ_CST);
       #endif

@@ -120,6 +120,9 @@
 #undef BME_set_Sleep
 #undef BME_set_NoLibrary
 #undef BME_set_Language
+#ifdef BME_set_CountLockFailGlobal
+  #undef BME_set_CountLockFailGlobal
+#endif
 #undef BME_set_CountLockFail
 #undef BME_set_Pad
 #undef BME_set_AreWeInsideStruct
