@@ -96,7 +96,7 @@
   #define _BME_OCITFFE
 #endif
 
-#include "rest.h"
+#include "internal/rest.h"
 
 #undef _BME_POFTWBIT
 #undef _BME_SOFTWBIT
