@@ -43,6 +43,7 @@ BME_StructBegin(_BME_P(t))
   BME_StructEnd(_BME_P(t))
 #endif
 
+__forceinline
 _BME_SOFTWBIT
 bool
 _BME_POFTWBIT(Peek)(
@@ -55,6 +56,7 @@ _BME_POFTWBIT(Peek)(
   #endif
 }
 
+__forceinline
 _BME_SOFTWBIT
 #if BME_set_LockValue == 0
   void
@@ -109,6 +111,7 @@ _BME_POFTWBIT(Lock)(
   #endif
 }
 
+__forceinline
 _BME_SOFTWBIT
 void
 _BME_POFTWBIT(Unlock)(
@@ -134,6 +137,7 @@ _BME_POFTWBIT(Unlock)(
 }
 
 #ifdef BME_set_Conditional
+  __forceinline
   _BME_SOFTWBIT
   void
   _BME_POFTWBIT(Wait)(
@@ -154,6 +158,7 @@ _BME_POFTWBIT(Unlock)(
     #endif
   }
 
+  __forceinline
   _BME_SOFTWBIT
   void
   _BME_POFTWBIT(Signal)(
