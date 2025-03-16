@@ -49,7 +49,14 @@ bool
 _BME_POFTWBIT(Peek)(
   _BME_DTFF
 ){
-  #if !defined(BME_set_Conditional) && !BME_set_Sleep
+  #if defined(BME_set_Conditional) && defined(__platform_unix) && defined(__platform_libc) && !BME_set_NoLibrary && BME_set_Sleep
+    /* TODO */
+    /* pthread doesnt have support of this */
+    __abort();
+  #elif defined(BME_set_Conditional) && defined(__platform_windows) && defined(__platform_libc) && !BME_set_NoLibrary && BME_set_Sleep
+    /* TODO */
+    __abort();
+  #elif !defined(BME_set_Conditional) && !BME_set_Sleep
     return __atomic_load_n(&_BME_GetType->value, __ATOMIC_SEQ_CST);
   #else
     #error ?
