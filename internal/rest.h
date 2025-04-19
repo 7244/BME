@@ -50,14 +50,29 @@ _BME_POFTWBIT(Peek)(
   _BME_DTFF
 ){
   #if defined(BME_set_Conditional) && defined(__platform_unix) && defined(__platform_libc) && !BME_set_NoLibrary && BME_set_Sleep
-    /* TODO */
-    /* pthread doesnt have support of this */
-    __abort();
+    /* TODO bad implement */
+    if(pthread_mutex_trylock(&_BME_GetType->mutex) == 0){
+        int r = pthread_mutex_unlock(&_BME_GetType->mutex);
+        if(r != 0){
+          __abort();
+        }
+        return 0;
+    }
+    return 1;
   #elif defined(BME_set_Conditional) && defined(__platform_windows) && defined(__platform_libc) && !BME_set_NoLibrary && BME_set_Sleep
-    /* TODO */
-    __abort();
+    #error implement peek function
   #elif !defined(BME_set_Conditional) && !BME_set_Sleep
     return __atomic_load_n(&_BME_GetType->value, __ATOMIC_SEQ_CST);
+  #elif !defined(BME_set_Conditional) && defined(__platform_unix) && defined(__platform_libc) && !BME_set_NoLibrary && BME_set_Sleep
+    /* TODO bad implement */
+    if(pthread_mutex_trylock(&_BME_GetType->mutex) == 0){
+        int r = pthread_mutex_unlock(&_BME_GetType->mutex);
+        if(r != 0){
+          __abort();
+        }
+        return 0;
+    }
+    return 1;
   #else
     #error ?
   #endif
